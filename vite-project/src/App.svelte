@@ -10,6 +10,7 @@
       let ws, msgs = [], ctx = null
       
       window.onload = function() {
+        let celebration;
         ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
         ws.onopen = () => {
@@ -28,13 +29,20 @@
         ctx = canvas.getContext( '2d' )
 
         window.onclick = e => {
-          ws.send( `${e.pageX}:${e.pageY}` )
+          console.log(e.pageX, e.pageY);
+          ws.send( `${e.pageX-50}:${e.pageY-50}` )
           ctx.fillStyle = 'yellow'
-          ctx.fillRect( e.pageX,e.pageY,50,50 )
+          ctx.fillRect( e.pageX-50,e.pageY-50,50,50 )
         }
       }
     </script>
   </head>
+  <!-- <audio
+    src='https://sveltejs.github.io/assets/music/strauss.mp3'
+    preload="auto"
+    bind:this={celebration}
+    controls
+  > -->
   <body>
     <canvas></canvas>
   </body>
